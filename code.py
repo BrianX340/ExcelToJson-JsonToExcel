@@ -87,17 +87,17 @@ def generateInstanceOfExcelWithJson(data):
 
         index += 1
 
-	for column in ws.columns:
-		max_length = 0
-		column_letter = column[0].column_letter
-		for cell in column:
-		    try:
-			if len(str(cell.value)) > max_length:
-			    max_length = len(cell.value)
-		    except:
-			pass
-        adjusted_width = (max_length + 2) * 1.2
-        ws.column_dimensions[column_letter].width = adjusted_width
+        for column in ws.columns:
+            max_length = 0
+            column_letter = column[0].column_letter
+            for cell in column:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(cell.value)
+                except:
+                    pass
+            adjusted_width = (max_length + 2) * 1.2
+            ws.column_dimensions[column_letter].width = adjusted_width
 
     wb['Sheet'].freeze_panes = wb['Sheet']["B2"]
     userProfilePath = os.environ['USERPROFILE']
@@ -105,4 +105,4 @@ def generateInstanceOfExcelWithJson(data):
     wb.save(tempRoute) 
     os.system(f"start EXCEL.EXE {tempRoute}")
 
-generateInstanceOfExcelWithJson(xlsxToJson('temp.xlsx',1))
+#generateInstanceOfExcelWithJson(xlsxToJson('temp.xlsx',1))
